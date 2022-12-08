@@ -13,7 +13,18 @@
 		4B087A542941712400246D3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B087A532941712400246D3A /* Assets.xcassets */; };
 		4B087A572941712400246D3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B087A552941712400246D3A /* LaunchScreen.storyboard */; };
 		4BB45CEC29418819008B8CE3 /* RandomNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB45CEB29418819008B8CE3 /* RandomNumber.swift */; };
+		4BB45CF429418E73008B8CE3 /* NumeroRandomicoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB45CF329418E73008B8CE3 /* NumeroRandomicoTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4BB45CF529418E73008B8CE3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B087A3F2941712000246D3A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4B087A462941712000246D3A;
+			remoteInfo = NumeroRandomico;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4B087A472941712000246D3A /* NumeroRandomico.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NumeroRandomico.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -24,10 +35,19 @@
 		4B087A562941712400246D3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B087A582941712400246D3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BB45CEB29418819008B8CE3 /* RandomNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomNumber.swift; sourceTree = "<group>"; };
+		4BB45CF129418E72008B8CE3 /* NumeroRandomicoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NumeroRandomicoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BB45CF329418E73008B8CE3 /* NumeroRandomicoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumeroRandomicoTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		4B087A442941712000246D3A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4BB45CEE29418E72008B8CE3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -41,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				4B087A492941712000246D3A /* NumeroRandomico */,
+				4BB45CF229418E73008B8CE3 /* NumeroRandomicoTests */,
 				4B087A482941712000246D3A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				4B087A472941712000246D3A /* NumeroRandomico.app */,
+				4BB45CF129418E72008B8CE3 /* NumeroRandomicoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -75,6 +97,14 @@
 			path = Domain;
 			sourceTree = "<group>";
 		};
+		4BB45CF229418E73008B8CE3 /* NumeroRandomicoTests */ = {
+			isa = PBXGroup;
+			children = (
+				4BB45CF329418E73008B8CE3 /* NumeroRandomicoTests.swift */,
+			);
+			path = NumeroRandomicoTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -95,6 +125,24 @@
 			productReference = 4B087A472941712000246D3A /* NumeroRandomico.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4BB45CF029418E72008B8CE3 /* NumeroRandomicoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4BB45CF729418E73008B8CE3 /* Build configuration list for PBXNativeTarget "NumeroRandomicoTests" */;
+			buildPhases = (
+				4BB45CED29418E72008B8CE3 /* Sources */,
+				4BB45CEE29418E72008B8CE3 /* Frameworks */,
+				4BB45CEF29418E72008B8CE3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4BB45CF629418E73008B8CE3 /* PBXTargetDependency */,
+			);
+			name = NumeroRandomicoTests;
+			productName = NumeroRandomicoTests;
+			productReference = 4BB45CF129418E72008B8CE3 /* NumeroRandomicoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -107,6 +155,10 @@
 				TargetAttributes = {
 					4B087A462941712000246D3A = {
 						CreatedOnToolsVersion = 14.0.1;
+					};
+					4BB45CF029418E72008B8CE3 = {
+						CreatedOnToolsVersion = 14.0.1;
+						TestTargetID = 4B087A462941712000246D3A;
 					};
 				};
 			};
@@ -124,6 +176,7 @@
 			projectRoot = "";
 			targets = (
 				4B087A462941712000246D3A /* NumeroRandomico */,
+				4BB45CF029418E72008B8CE3 /* NumeroRandomicoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -135,6 +188,13 @@
 			files = (
 				4B087A572941712400246D3A /* LaunchScreen.storyboard in Resources */,
 				4B087A542941712400246D3A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4BB45CEF29418E72008B8CE3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,7 +212,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4BB45CED29418E72008B8CE3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BB45CF429418E73008B8CE3 /* NumeroRandomicoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4BB45CF629418E73008B8CE3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4B087A462941712000246D3A /* NumeroRandomico */;
+			targetProxy = 4BB45CF529418E73008B8CE3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4B087A552941712400246D3A /* LaunchScreen.storyboard */ = {
@@ -340,6 +416,44 @@
 			};
 			name = Release;
 		};
+		4BB45CF829418E73008B8CE3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P2VHV5YCL6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.diegoferreira.NumeroRandomicoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NumeroRandomico.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NumeroRandomico";
+			};
+			name = Debug;
+		};
+		4BB45CF929418E73008B8CE3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P2VHV5YCL6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.diegoferreira.NumeroRandomicoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NumeroRandomico.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NumeroRandomico";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -357,6 +471,15 @@
 			buildConfigurations = (
 				4B087A5C2941712400246D3A /* Debug */,
 				4B087A5D2941712400246D3A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4BB45CF729418E73008B8CE3 /* Build configuration list for PBXNativeTarget "NumeroRandomicoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4BB45CF829418E73008B8CE3 /* Debug */,
+				4BB45CF929418E73008B8CE3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
