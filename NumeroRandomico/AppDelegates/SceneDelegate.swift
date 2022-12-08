@@ -9,8 +9,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = UINavigationController(rootViewController: RandomNumberViewController())
+        window?.rootViewController = UINavigationController(rootViewController: randomNumberViewControllerFactory())
         window?.makeKeyAndVisible()
+    }
+    
+    func randomNumberViewControllerFactory() -> RandomNumberViewController {
+        
+        let randomNumberDomain = RandomNumber()
+        
+        let interactor = RandomNumberInteractor(randomNumber: randomNumberDomain)
+        
+        let presenter = RandomNumberPresenter(interactor: interactor)
+        
+        let randomNumberViewController = RandomNumberViewController(presenter: presenter)
+        
+        return randomNumberViewController
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

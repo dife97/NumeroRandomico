@@ -1,35 +1,34 @@
 class RandomNumber: RandomNumberProtocol {
     
-    var userNumber: Int
-    
     var maxNumberOfTries: Int = 3
     
     var currentTryNUmber: Int = 0
     
-    init(userNumber: Int) {
-        self.userNumber = userNumber
-    }
-    
-    func checkResult(userNumber: Int) -> RandomNumberResult {
+    func checkResult(for userNumber: Int) -> GameResult {
+        
+        if currentTryNUmber > maxNumberOfTries {
+            return .gameOver
+        }
         
         let randomNumber = generateRandomNumber()
         
+        currentTryNUmber += 1
+        
         if userNumber == randomNumber {
-            return RandomNumberResult(rightAnswer: true, greaterOrSmaller: .equal)
+            return .rightAnswer
         }
         
         if userNumber > randomNumber {
-            return RandomNumberResult(rightAnswer: false, greaterOrSmaller: .greater)
+            return .greaterNumber
         }
         
         else {
-            return RandomNumberResult(rightAnswer: false, greaterOrSmaller: .smaller)
+            return .smallerNumber
         }
     }
     
     func reset() {
         
-        userNumber = 0
         currentTryNUmber = 0
     }
 }

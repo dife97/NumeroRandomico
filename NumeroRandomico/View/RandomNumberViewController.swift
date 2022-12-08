@@ -61,10 +61,24 @@ class RandomNumberViewController: UIViewController {
         return label
     }()
     
+    private let presenter: RandomNumberPresenterProtocol
+    
+    init(presenter: RandomNumberPresenterProtocol) {
+        self.presenter = presenter
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureView()
+        
+        configurePresenter()
     }
     
     private func configureView() {
@@ -91,8 +105,30 @@ class RandomNumberViewController: UIViewController {
         ])
     }
     
+    private func configurePresenter() {
+        
+//        presenter.delegate = self
+    }
+    
     @objc private func didTapCompareButton() {
         
-        print("didTapCompareButton")
+        guard let userNumberText = userNumberTextField.text,
+              let userNumber = Int(userNumberText) else { return }
+        
+        presenter.getGameResult(for: userNumber)
     }
 }
+
+//extension RandomNumberViewController: RandomNumberPresenterDelegate {
+//
+//}
+
+
+/*
+ factory que retorne uma Presenter,
+ onde dentro dela terá um interactor,
+ onde dentro da interactor tenha uma RandomNumber
+ que conforme com RandomNumberProtocol
+ 
+ 
+ */

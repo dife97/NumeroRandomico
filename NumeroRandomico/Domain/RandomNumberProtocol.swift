@@ -1,6 +1,6 @@
 protocol RandomNumberProtocol {
     
-    var userNumber: Int { get }
+//    var userNumber: Int { get }
     //TODO: testar se userNumber recebido é o mesmo userNumber passado como parametro da checkResult
     
 //    var randomNumber: Int { get }
@@ -14,7 +14,7 @@ protocol RandomNumberProtocol {
     func generateRandomNumber(with range: RandomNumberRangeModel) -> Int
     //TODO: testar se o número armazenado em randomNumber é igual ao número gerado nesta função
     
-    func checkResult(userNumber: Int) -> RandomNumberResult
+    func checkResult(for userNumber: Int) -> GameResult
     //TODO: testar se o rightAnswer = true está invocando o reset()
     //TODO: testar se o greaterOrSmaller realmente é maior ou menor ao número digitado pelo user
     //TODO: testar se está incrementando o tryNumber APENAS se menor que maxNumberOfTries
@@ -39,15 +39,10 @@ struct RandomNumberRangeModel {
     let lastNumber: Int
 }
 
-struct RandomNumberResult {
+enum GameResult {
     
-    let rightAnswer: Bool
-    let greaterOrSmaller: GreaterOrSmaller
-}
-
-enum GreaterOrSmaller {
-    
-    case greater
-    case smaller
-    case equal
+    case rightAnswer
+    case greaterNumber
+    case smallerNumber
+    case gameOver
 }
