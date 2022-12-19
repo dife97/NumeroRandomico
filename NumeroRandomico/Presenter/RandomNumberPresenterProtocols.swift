@@ -3,6 +3,8 @@ protocol RandomNumberPresenterInput {
     func viewDidLoad()
     
     func didTapRandomNumberButton(userNumber: Int)
+    
+    func didChangeValue(for value: String?)
 }
 
 protocol RandomNumberPresenterProtocol {
@@ -20,6 +22,12 @@ protocol AttemptInformationDelegate: AnyObject {
 }
 
 protocol RandomNumberPresenterDelegate: AnyObject {
+    
+    func didReceiveEmptyValue()
+    
+    func didReceiveGreaterValue()
+    
+    func didReceiveAcceptableValue()
     
     func gameOver()
     

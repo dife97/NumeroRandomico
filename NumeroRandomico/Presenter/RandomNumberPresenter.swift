@@ -22,6 +22,31 @@ extension RandomNumberPresenter: RandomNumberPresenterInput {
         
         getGameResult(for: userNumber)
     }
+    
+    func didChangeValue(for value: String?) {
+        
+        guard let value = value else {
+            
+            delegate?.didReceiveEmptyValue()
+            
+            return
+        }
+        
+        guard let userNumber = Int(value) else { return }
+        
+        if interactor.isUserNumberOutsideRange(userNumber: userNumber) {
+            
+            delegate?.didReceiveGreaterValue()
+        } else {
+            delegate?.didReceiveAcceptableValue()
+        }
+        
+//        if textField.text?.isEmpty == true {
+//
+//        } else {
+//            configureCompareButton(enabled: true, backgroundColor: .blue)
+//        }
+    }
 }
 
 extension RandomNumberPresenter: RandomNumberPresenterProtocol {

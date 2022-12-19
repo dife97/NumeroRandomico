@@ -13,6 +13,8 @@
 		4B087A542941712400246D3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B087A532941712400246D3A /* Assets.xcassets */; };
 		4B087A572941712400246D3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B087A552941712400246D3A /* LaunchScreen.storyboard */; };
 		4B1DC8062950D673005E6ACF /* RandomNumberPresenterProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1DC8052950D673005E6ACF /* RandomNumberPresenterProtocols.swift */; };
+		4B1DC8082950EC17005E6ACF /* RandomNumberInteractorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1DC8072950EC17005E6ACF /* RandomNumberInteractorProtocols.swift */; };
+		4B1DC80A2950ED3C005E6ACF /* AttemptModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1DC8092950ED3C005E6ACF /* AttemptModel.swift */; };
 		4BB45CEC29418819008B8CE3 /* RandomNumberProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB45CEB29418819008B8CE3 /* RandomNumberProtocol.swift */; };
 		4BB45CF429418E73008B8CE3 /* RandomNumberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB45CF329418E73008B8CE3 /* RandomNumberTests.swift */; };
 		4BB45CFC29419026008B8CE3 /* RandomNumberGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB45CFB29419026008B8CE3 /* RandomNumberGame.swift */; };
@@ -41,6 +43,8 @@
 		4B087A562941712400246D3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B087A582941712400246D3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B1DC8052950D673005E6ACF /* RandomNumberPresenterProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomNumberPresenterProtocols.swift; sourceTree = "<group>"; };
+		4B1DC8072950EC17005E6ACF /* RandomNumberInteractorProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomNumberInteractorProtocols.swift; sourceTree = "<group>"; };
+		4B1DC8092950ED3C005E6ACF /* AttemptModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttemptModel.swift; sourceTree = "<group>"; };
 		4BB45CEB29418819008B8CE3 /* RandomNumberProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomNumberProtocol.swift; sourceTree = "<group>"; };
 		4BB45CF129418E72008B8CE3 /* NumeroRandomicoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NumeroRandomicoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BB45CF329418E73008B8CE3 /* RandomNumberTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomNumberTests.swift; sourceTree = "<group>"; };
@@ -92,7 +96,6 @@
 			children = (
 				4BB45D3929422A97008B8CE3 /* AppDelegates */,
 				4B087A5E2941712F00246D3A /* Domain */,
-				4BB45CFA29418F8A008B8CE3 /* Data */,
 				4BB45D3D29422B3C008B8CE3 /* Interactor */,
 				4BB45D3A29422ABC008B8CE3 /* Presenter */,
 				4BB45D3B29422ACA008B8CE3 /* View */,
@@ -105,8 +108,10 @@
 			isa = PBXGroup;
 			children = (
 				4BB45CEB29418819008B8CE3 /* RandomNumberProtocol.swift */,
+				4BB45CFB29419026008B8CE3 /* RandomNumberGame.swift */,
 				4BB45D432942543F008B8CE3 /* ResultModel.swift */,
 				4BB45D452942545F008B8CE3 /* RangeModel.swift */,
+				4B1DC8092950ED3C005E6ACF /* AttemptModel.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -117,14 +122,6 @@
 				4BB45CF329418E73008B8CE3 /* RandomNumberTests.swift */,
 			);
 			path = NumeroRandomicoTests;
-			sourceTree = "<group>";
-		};
-		4BB45CFA29418F8A008B8CE3 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				4BB45CFB29419026008B8CE3 /* RandomNumberGame.swift */,
-			);
-			path = Data;
 			sourceTree = "<group>";
 		};
 		4BB45D3929422A97008B8CE3 /* AppDelegates */ = {
@@ -167,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				4BB45D4129422BC3008B8CE3 /* RandomNumberInteractor.swift */,
+				4B1DC8072950EC17005E6ACF /* RandomNumberInteractorProtocols.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -276,8 +274,10 @@
 				4B1DC8062950D673005E6ACF /* RandomNumberPresenterProtocols.swift in Sources */,
 				4B087A4B2941712000246D3A /* AppDelegate.swift in Sources */,
 				4BB45D4229422BC3008B8CE3 /* RandomNumberInteractor.swift in Sources */,
+				4B1DC80A2950ED3C005E6ACF /* AttemptModel.swift in Sources */,
 				4BB45D462942545F008B8CE3 /* RangeModel.swift in Sources */,
 				4BB45D442942543F008B8CE3 /* ResultModel.swift in Sources */,
+				4B1DC8082950EC17005E6ACF /* RandomNumberInteractorProtocols.swift in Sources */,
 				4BB45CFC29419026008B8CE3 /* RandomNumberGame.swift in Sources */,
 				4B087A4D2941712000246D3A /* SceneDelegate.swift in Sources */,
 				4BB45CEC29418819008B8CE3 /* RandomNumberProtocol.swift in Sources */,

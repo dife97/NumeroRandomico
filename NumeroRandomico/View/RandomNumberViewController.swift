@@ -37,7 +37,7 @@ class RandomNumberViewController: UIViewController {
         textField.layer.cornerRadius = 8
         textField.textAlignment = .center
         textField.keyboardType = .numberPad
-        textField.placeholder = "Digite o número"
+        textField.placeholder = "Digite um número de 0 à 10"
         
         return textField
     }()
@@ -46,7 +46,6 @@ class RandomNumberViewController: UIViewController {
         let button = UIButton(type: .system)
         
         button.translatesAutoresizingMaskIntoConstraints = false
-//        button.backgroundColor = .blue
         button.layer.cornerRadius = 8
         button.setTitleColor(.white, for: .normal)
         button.setTitle("Gerar Número Aleatório", for: .normal)
@@ -57,6 +56,19 @@ class RandomNumberViewController: UIViewController {
         button.setTitleColor(.darkGray, for: .disabled)
         
         return button
+    }()
+    
+    private lazy var outsideRangeAlertLabel: UILabel = {
+        let label = UILabel()
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.numberOfLines = 0
+        label.textColor = .red
+        label.textAlignment = .center
+        label.text = "Número inválido"
+        
+        return label
     }()
     
     private lazy var numberOfTriesLabel: UILabel = {
@@ -152,6 +164,22 @@ class RandomNumberViewController: UIViewController {
         ])
     }
     
+    private func addOutsideRangeAlertLabel() {
+        
+        view.addSubview(outsideRangeAlertLabel)
+        
+        NSLayoutConstraint.activate([
+            outsideRangeAlertLabel.topAnchor.constraint(equalTo: compareButton.bottomAnchor, constant: 8),
+            outsideRangeAlertLabel.leadingAnchor.constraint(equalTo: userNumberTextField.leadingAnchor),
+            outsideRangeAlertLabel.trailingAnchor.constraint(equalTo: userNumberTextField.trailingAnchor),
+        ])
+    }
+    
+    private func removeOutsideRangeAlertLabel() {
+        
+        outsideRangeAlertLabel.removeFromSuperview()
+    }
+    
     @objc private func didTapCompareButton() {
         
         guard let userNumberText = userNumberTextField.text,
@@ -182,12 +210,27 @@ extension RandomNumberViewController: AttemptInformationDelegate {
 
 extension RandomNumberViewController: RandomNumberPresenterDelegate {
     
+    func didReceiveEmptyValue() {
+        
+        configureCompareButton(enabled: false, backgroundColor: .lightGray)
+    }
+    
+    func didReceiveGreaterValue() {
+        
+        configureCompareButton(enabled: false, backgroundColor: .lightGray)
+        
+        addOutsideRangeAlertLabel()
+    }
+    
+    func didReceiveAcceptableValue() {
+        
+        configureCompareButton(enabled: true, backgroundColor: .blue)
+        
+        removeOutsideRangeAlertLabel()
+    }
+    
     func gameOver() {
         
-        randomNumberLabel.isHidden = true
-        
-        resultText = .lastWrongAnswer
-        resultLabel.isHidden = false
     }
     
     func rightAnswer(result: ResultModel) {
@@ -207,10 +250,6 @@ extension RandomNumberViewController: UITextFieldDelegate {
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
         
-        if textField.text?.isEmpty == true {
-            configureCompareButton(enabled: false, backgroundColor: .lightGray)
-        } else {
-            configureCompareButton(enabled: true, backgroundColor: .blue)
-        }
+        presenter.didChangeValue(for: textField.text)
     }
 }
