@@ -1,29 +1,4 @@
-protocol RandomNumberPresenterProtocol {
-    
-    var interactor: RandomNumberInteractorProtocol { get }
-    
-    func viewDidLoad()
-    
-    func getGameResult(for userNumber: Int)
-}
-
-protocol RandomNumberPresenterDelegate: AnyObject {
-    
-    func gameOver()
-    
-    func rightAnswer(result: GameResult, randomNumber: Int)
-    
-    func greaterNumber(result: GameResult, randomNumber: Int)
-    
-    func smallerNumber(result: GameResult, randomNumber: Int)
-}
-
-protocol AttemptInformationDelegate: AnyObject {
-    
-    func configure(with attemptModel: AttemptModel)
-}
-
-class RandomNumberPresenter: RandomNumberPresenterProtocol {
+class RandomNumberPresenter {
     
     weak var delegate: RandomNumberPresenterDelegate?
     
@@ -34,37 +9,36 @@ class RandomNumberPresenter: RandomNumberPresenterProtocol {
     init(interactor: RandomNumberInteractorProtocol) {
         self.interactor = interactor
     }
+}
+
+extension RandomNumberPresenter: RandomNumberPresenterInput {
     
     func viewDidLoad() {
         
         getAttemptInformation()
     }
     
-    func getGameResult(for userNumber: Int) {
+    func didTapRandomNumberButton(userNumber: Int) {
         
-        interactor.getGameResult(for: userNumber) { [unowned self] result in
-            
-            switch result.result {
-            
-            case .rightAnswer:
-                self.delegate?.rightAnswer(result: .rightAnswer, randomNumber: result.randomNumber)
-                
-            case .greaterNumber:
-                self.delegate?.greaterNumber(result: .greaterNumber, randomNumber: result.randomNumber)
-                
-            case .smallerNumber:
-                self.delegate?.smallerNumber(result: .smallerNumber, randomNumber: result.randomNumber)
-                
-            case .gameOver:
-                self.delegate?.gameOver()
-            }
-        }
+        getGameResult(for: userNumber)
     }
+}
+
+extension RandomNumberPresenter: RandomNumberPresenterProtocol {
     
-    private func getAttemptInformation() {
+    func getAttemptInformation() {
         
         let attemptInformation = interactor.getAttemptInformation()
         
         attemptInformationDelegate?.configure(with: attemptInformation)
+    }
+    
+    func getGameResult(for userNumber: Int) {
+        
+        interactor.getGameResult(for: userNumber) { [unowned self] result in
+            
+            self.attemptInformationDelegate?.configure(with: result.attemptInformation)
+            
+        }
     }
 }

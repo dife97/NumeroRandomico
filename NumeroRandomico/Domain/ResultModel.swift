@@ -2,6 +2,7 @@ struct ResultModel {
     
     let userNumber: Int
     let randomNumber: Int
+    let attemptInformation: AttemptModel
     let result: GameResult
 }
 

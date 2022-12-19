@@ -7,7 +7,7 @@ class RandomNumberGame: RandomNumberProtocol {
         if attemptModel.currentTryNumber >= attemptModel.maxNumberOfTries {
             reset()
             
-            return ResultModel(userNumber: userNumber, randomNumber: 0, result: .gameOver)
+            return ResultModel(userNumber: userNumber, randomNumber: 0, attemptInformation: attemptModel, result: .gameOver)
         }
         
         let randomNumber = generateRandomNumber()
@@ -17,15 +17,24 @@ class RandomNumberGame: RandomNumberProtocol {
         if userNumber == randomNumber {
             reset()
             
-            return ResultModel(userNumber: userNumber, randomNumber: randomNumber, result: .rightAnswer)
+            return ResultModel(userNumber: userNumber,
+                               randomNumber: randomNumber,
+                               attemptInformation: attemptModel,
+                               result: .rightAnswer)
         }
         
         if userNumber > randomNumber {
-            return ResultModel(userNumber: userNumber, randomNumber: randomNumber, result: .greaterNumber)
+            return ResultModel(userNumber: userNumber,
+                               randomNumber: randomNumber,
+                               attemptInformation: attemptModel,
+                               result: .greaterNumber)
         }
         
         else {
-            return ResultModel(userNumber: userNumber, randomNumber: randomNumber, result: .smallerNumber)
+            return ResultModel(userNumber: userNumber,
+                               randomNumber: randomNumber,
+                               attemptInformation: attemptModel,
+                               result: .smallerNumber)
         }
     }
     

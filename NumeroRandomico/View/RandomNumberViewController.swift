@@ -92,9 +92,9 @@ class RandomNumberViewController: UIViewController {
         return label
     }()
     
-    private let presenter: RandomNumberPresenterProtocol
+    private let presenter: RandomNumberPresenterInput
     
-    init(presenter: RandomNumberPresenterProtocol) {
+    init(presenter: RandomNumberPresenterInput) {
         self.presenter = presenter
         
         super.init(nibName: nil, bundle: nil)
@@ -152,7 +152,12 @@ class RandomNumberViewController: UIViewController {
         guard let userNumberText = userNumberTextField.text,
               let userNumber = Int(userNumberText) else { return }
         
-        presenter.getGameResult(for: userNumber)
+        presenter.didTapRandomNumberButton(userNumber: userNumber)
+    }
+    
+    private func updateNumberOfTriesLabel(with attemptModel: AttemptModel) {
+        
+        numberOfTriesLabel.text = "Tentativa \(attemptModel.currentTryNumber) de \(attemptModel.maxNumberOfTries)"
     }
 }
 
@@ -160,7 +165,7 @@ extension RandomNumberViewController: AttemptInformationDelegate {
     
     func configure(with attemptModel: AttemptModel) {
         
-        numberOfTriesLabel.text = "Tentativa \(attemptModel.currentTryNumber) de \(attemptModel.maxNumberOfTries)"
+        updateNumberOfTriesLabel(with: attemptModel)
     }
 }
 
@@ -174,64 +179,15 @@ extension RandomNumberViewController: RandomNumberPresenterDelegate {
         resultLabel.isHidden = false
     }
     
-    func rightAnswer(result: GameResult, randomNumber: Int) {
+    func rightAnswer(result: ResultModel) {
         
-        randomNumberText = "Número aleatório gerado: \(randomNumber)"
-        randomNumberLabel.isHidden = false
-        
-        switch result {
-            
-        case .rightAnswer:
-            resultText = .rightAnswer
-        case .greaterNumber:
-            resultText = .wrongAnswer
-        case .smallerNumber:
-            resultText = .wrongAnswer
-        case .gameOver:
-            resultText = .lastWrongAnswer
-        }
-        
-        resultLabel.isHidden = false
     }
     
-    func greaterNumber(result: GameResult, randomNumber: Int) {
+    func greaterNumber(result: ResultModel) {
         
-        randomNumberText = "Número aleatório gerado: \(randomNumber)"
-        randomNumberLabel.isHidden = false
-        
-        switch result {
-            
-        case .rightAnswer:
-            resultText = .rightAnswer
-        case .greaterNumber:
-            resultText = .wrongAnswer
-        case .smallerNumber:
-            resultText = .wrongAnswer
-        case .gameOver:
-            resultText = .lastWrongAnswer
-        }
-        
-        resultLabel.isHidden = false
     }
     
-    func smallerNumber(result: GameResult, randomNumber: Int) {
-        
-        randomNumberText = "Número aleatório gerado: \(randomNumber)"
-        randomNumberLabel.isHidden = false
-        
-        
-        switch result {
-            
-        case .rightAnswer:
-            resultText = .rightAnswer
-        case .greaterNumber:
-            resultText = .wrongAnswer
-        case .smallerNumber:
-            resultText = .wrongAnswer
-        case .gameOver:
-            resultText = .lastWrongAnswer
-        }
-        
-        resultLabel.isHidden = false
+    func smallerNumber(result: ResultModel) {
+
     }
 }
