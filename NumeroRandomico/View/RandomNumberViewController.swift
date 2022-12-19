@@ -15,6 +15,12 @@ class RandomNumberViewController: UIViewController {
         }
     }
     
+    private var randomNumberText: String = "" {
+        didSet {
+            randomNumberLabel.text = randomNumberText
+        }
+    }
+    
     private var resultText: ResultLabelText = .rightAnswer {
         didSet {
             resultLabel.text = resultText.rawValue
@@ -48,6 +54,19 @@ class RandomNumberViewController: UIViewController {
         return button
     }()
     
+    private lazy var randomNumberLabel: UILabel = {
+        let label = UILabel()
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 18, weight: .semibold)
+        label.numberOfLines = 0
+        label.textColor = .black
+        label.textAlignment = .center
+        label.isHidden = true
+        
+        return label
+    }()
+    
     private lazy var resultLabel: UILabel = {
         let label = UILabel()
         
@@ -56,7 +75,8 @@ class RandomNumberViewController: UIViewController {
         label.numberOfLines = 0
         label.textColor = resultTextColor
         label.textAlignment = .center
-        label.text = resultText.rawValue
+//        label.text = resultText.rawValue
+        label.isHidden = true
         
         return label
     }()
@@ -77,15 +97,15 @@ class RandomNumberViewController: UIViewController {
         super.viewDidLoad()
         
         configureView()
-        
-        configurePresenter()
     }
     
     private func configureView() {
+        
         view.backgroundColor = .white
         
         view.addSubview(userNumberTextField)
         view.addSubview(compareButton)
+        view.addSubview(randomNumberLabel)
         view.addSubview(resultLabel)
         
         NSLayoutConstraint.activate([
@@ -99,15 +119,14 @@ class RandomNumberViewController: UIViewController {
             compareButton.trailingAnchor.constraint(equalTo: userNumberTextField.trailingAnchor),
             compareButton.heightAnchor.constraint(equalTo: userNumberTextField.heightAnchor),
             
+            randomNumberLabel.topAnchor.constraint(equalTo: compareButton.bottomAnchor, constant: 48),
+            randomNumberLabel.leadingAnchor.constraint(equalTo: userNumberTextField.leadingAnchor),
+            randomNumberLabel.trailingAnchor.constraint(equalTo: userNumberTextField.trailingAnchor),
+            
+            resultLabel.topAnchor.constraint(equalTo: randomNumberLabel.bottomAnchor, constant: 24),
             resultLabel.leadingAnchor.constraint(equalTo: userNumberTextField.leadingAnchor),
-            resultLabel.trailingAnchor.constraint(equalTo: userNumberTextField.trailingAnchor),
-            resultLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            resultLabel.trailingAnchor.constraint(equalTo: userNumberTextField.trailingAnchor)
         ])
-    }
-    
-    private func configurePresenter() {
-        
-//        presenter.delegate = self
     }
     
     @objc private func didTapCompareButton() {
@@ -119,16 +138,74 @@ class RandomNumberViewController: UIViewController {
     }
 }
 
-//extension RandomNumberViewController: RandomNumberPresenterDelegate {
-//
-//}
-
-
-/*
- factory que retorne uma Presenter,
- onde dentro dela terá um interactor,
- onde dentro da interactor tenha uma RandomNumber
- que conforme com RandomNumberProtocol
- 
- 
- */
+extension RandomNumberViewController: RandomNumberPresenterDelegate {
+    
+    func gameOver() {
+        
+        randomNumberLabel.isHidden = true
+        
+        resultText = .lastWrongAnswer
+        resultLabel.isHidden = false
+    }
+    
+    func rightAnswer(result: GameResult, randomNumber: Int) {
+        
+        randomNumberText = "Número aleatório gerado: \(randomNumber)"
+        randomNumberLabel.isHidden = false
+        
+        switch result {
+            
+        case .rightAnswer:
+            resultText = .rightAnswer
+        case .greaterNumber:
+            resultText = .wrongAnswer
+        case .smallerNumber:
+            resultText = .wrongAnswer
+        case .gameOver:
+            resultText = .lastWrongAnswer
+        }
+        
+        resultLabel.isHidden = false
+    }
+    
+    func greaterNumber(result: GameResult, randomNumber: Int) {
+        
+        randomNumberText = "Número aleatório gerado: \(randomNumber)"
+        randomNumberLabel.isHidden = false
+        
+        switch result {
+            
+        case .rightAnswer:
+            resultText = .rightAnswer
+        case .greaterNumber:
+            resultText = .wrongAnswer
+        case .smallerNumber:
+            resultText = .wrongAnswer
+        case .gameOver:
+            resultText = .lastWrongAnswer
+        }
+        
+        resultLabel.isHidden = false
+    }
+    
+    func smallerNumber(result: GameResult, randomNumber: Int) {
+        
+        randomNumberText = "Número aleatório gerado: \(randomNumber)"
+        randomNumberLabel.isHidden = false
+        
+        
+        switch result {
+            
+        case .rightAnswer:
+            resultText = .rightAnswer
+        case .greaterNumber:
+            resultText = .wrongAnswer
+        case .smallerNumber:
+            resultText = .wrongAnswer
+        case .gameOver:
+            resultText = .lastWrongAnswer
+        }
+        
+        resultLabel.isHidden = false
+    }
+}

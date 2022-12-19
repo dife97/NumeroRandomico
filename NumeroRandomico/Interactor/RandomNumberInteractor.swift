@@ -1,21 +1,21 @@
 protocol RandomNumberInteractorProtocol {
     
-    var randomNumber: RandomNumberProtocol { get }
+    var randomNumberGame: RandomNumberProtocol { get }
     
-    func getGameResult(for userNumber: Int, onComplete: @escaping (GameResult) -> Void)
+    func getGameResult(for userNumber: Int, onComplete: @escaping (ResultModel) -> Void)
 }
 
 class RandomNumberInteractor: RandomNumberInteractorProtocol {
     
-    let randomNumber: RandomNumberProtocol
+    let randomNumberGame: RandomNumberProtocol
     
-    init(randomNumber: RandomNumberProtocol) {
-        self.randomNumber = randomNumber
+    init(randomNumberGame: RandomNumberProtocol) {
+        self.randomNumberGame = randomNumberGame
     }
     
-    func getGameResult(for userNumber: Int, onComplete: @escaping (GameResult) -> Void) {
+    func getGameResult(for userNumber: Int, onComplete: @escaping (ResultModel) -> Void) {
         
-        let gameResult = randomNumber.checkResult(for: userNumber)
+        let gameResult = randomNumberGame.getResult(for: userNumber)
         
         onComplete(gameResult)
     }

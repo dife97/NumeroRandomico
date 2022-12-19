@@ -14,9 +14,11 @@
 		4B087A572941712400246D3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B087A552941712400246D3A /* LaunchScreen.storyboard */; };
 		4BB45CEC29418819008B8CE3 /* RandomNumberProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB45CEB29418819008B8CE3 /* RandomNumberProtocol.swift */; };
 		4BB45CF429418E73008B8CE3 /* RandomNumberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB45CF329418E73008B8CE3 /* RandomNumberTests.swift */; };
-		4BB45CFC29419026008B8CE3 /* RandomNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB45CFB29419026008B8CE3 /* RandomNumber.swift */; };
+		4BB45CFC29419026008B8CE3 /* RandomNumberGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB45CFB29419026008B8CE3 /* RandomNumberGame.swift */; };
 		4BB45D3F29422B51008B8CE3 /* RandomNumberPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB45D3E29422B51008B8CE3 /* RandomNumberPresenter.swift */; };
 		4BB45D4229422BC3008B8CE3 /* RandomNumberInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB45D4129422BC3008B8CE3 /* RandomNumberInteractor.swift */; };
+		4BB45D442942543F008B8CE3 /* ResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB45D432942543F008B8CE3 /* ResultModel.swift */; };
+		4BB45D462942545F008B8CE3 /* RangeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB45D452942545F008B8CE3 /* RangeModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,9 +42,11 @@
 		4BB45CEB29418819008B8CE3 /* RandomNumberProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomNumberProtocol.swift; sourceTree = "<group>"; };
 		4BB45CF129418E72008B8CE3 /* NumeroRandomicoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NumeroRandomicoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BB45CF329418E73008B8CE3 /* RandomNumberTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomNumberTests.swift; sourceTree = "<group>"; };
-		4BB45CFB29419026008B8CE3 /* RandomNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomNumber.swift; sourceTree = "<group>"; };
+		4BB45CFB29419026008B8CE3 /* RandomNumberGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomNumberGame.swift; sourceTree = "<group>"; };
 		4BB45D3E29422B51008B8CE3 /* RandomNumberPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomNumberPresenter.swift; sourceTree = "<group>"; };
 		4BB45D4129422BC3008B8CE3 /* RandomNumberInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomNumberInteractor.swift; sourceTree = "<group>"; };
+		4BB45D432942543F008B8CE3 /* ResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModel.swift; sourceTree = "<group>"; };
+		4BB45D452942545F008B8CE3 /* RangeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,8 @@
 			isa = PBXGroup;
 			children = (
 				4BB45CEB29418819008B8CE3 /* RandomNumberProtocol.swift */,
+				4BB45D432942543F008B8CE3 /* ResultModel.swift */,
+				4BB45D452942545F008B8CE3 /* RangeModel.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -114,7 +120,7 @@
 		4BB45CFA29418F8A008B8CE3 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				4BB45CFB29419026008B8CE3 /* RandomNumber.swift */,
+				4BB45CFB29419026008B8CE3 /* RandomNumberGame.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -266,7 +272,9 @@
 				4B087A4F2941712000246D3A /* RandomNumberViewController.swift in Sources */,
 				4B087A4B2941712000246D3A /* AppDelegate.swift in Sources */,
 				4BB45D4229422BC3008B8CE3 /* RandomNumberInteractor.swift in Sources */,
-				4BB45CFC29419026008B8CE3 /* RandomNumber.swift in Sources */,
+				4BB45D462942545F008B8CE3 /* RangeModel.swift in Sources */,
+				4BB45D442942543F008B8CE3 /* ResultModel.swift in Sources */,
+				4BB45CFC29419026008B8CE3 /* RandomNumberGame.swift in Sources */,
 				4B087A4D2941712000246D3A /* SceneDelegate.swift in Sources */,
 				4BB45CEC29418819008B8CE3 /* RandomNumberProtocol.swift in Sources */,
 			);

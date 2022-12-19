@@ -9,11 +9,11 @@ protocol RandomNumberPresenterDelegate: AnyObject {
     
     func gameOver()
     
-    func rightAnswer()
+    func rightAnswer(result: GameResult, randomNumber: Int)
     
-    func greaterNumber()
+    func greaterNumber(result: GameResult, randomNumber: Int)
     
-    func smallerNumber()
+    func smallerNumber(result: GameResult, randomNumber: Int)
 }
 
 class RandomNumberPresenter: RandomNumberPresenterProtocol {
@@ -29,17 +29,17 @@ class RandomNumberPresenter: RandomNumberPresenterProtocol {
     func getGameResult(for userNumber: Int) {
         
         interactor.getGameResult(for: userNumber) { [unowned self] result in
-
-            switch result {
-                
+            
+            switch result.result {
+            
             case .rightAnswer:
-                self.delegate?.rightAnswer()
+                self.delegate?.rightAnswer(result: .rightAnswer, randomNumber: result.randomNumber)
                 
             case .greaterNumber:
-                self.delegate?.greaterNumber()
+                self.delegate?.greaterNumber(result: .greaterNumber, randomNumber: result.randomNumber)
                 
             case .smallerNumber:
-                self.delegate?.smallerNumber()
+                self.delegate?.smallerNumber(result: .smallerNumber, randomNumber: result.randomNumber)
                 
             case .gameOver:
                 self.delegate?.gameOver()
