@@ -12,6 +12,11 @@ class RandomNumberInteractor: RandomNumberInteractorProtocol {
                             currentTryNumber: randomNumberGame.attemptModel.currentTryNumber)
     }
     
+    func getRangeInformation() -> RangeModel {
+        
+        return randomNumberGame.range
+    }
+    
     func isUserNumberOutsideRange(userNumber: Int) -> Bool {
         
         if userNumber > randomNumberGame.range.lastNumber {

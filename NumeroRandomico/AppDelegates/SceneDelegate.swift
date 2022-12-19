@@ -26,6 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let randomNumberViewController = RandomNumberViewController(presenter: presenter)
         
         presenter.attemptInformationDelegate = randomNumberViewController
+        presenter.rangeInformationDelegate = randomNumberViewController
         presenter.delegate = randomNumberViewController
         
         return randomNumberViewController

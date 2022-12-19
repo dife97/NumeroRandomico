@@ -37,7 +37,6 @@ class RandomNumberViewController: UIViewController {
         textField.layer.cornerRadius = 8
         textField.textAlignment = .center
         textField.keyboardType = .numberPad
-        textField.placeholder = "Digite um número de 0 à 10"
         
         return textField
     }()
@@ -66,7 +65,6 @@ class RandomNumberViewController: UIViewController {
         label.numberOfLines = 0
         label.textColor = .red
         label.textAlignment = .center
-        label.text = "Número inválido"
         
         return label
     }()
@@ -127,6 +125,8 @@ class RandomNumberViewController: UIViewController {
         configureView()
         
         presenter.viewDidLoad()
+        
+        
     }
     
     private func configureView() {
@@ -205,6 +205,15 @@ extension RandomNumberViewController: AttemptInformationDelegate {
     func configure(with attemptModel: AttemptModel) {
         
         updateNumberOfTriesLabel(with: attemptModel)
+    }
+}
+
+extension RandomNumberViewController: RangeInformationDelegate {
+    
+    func configureRangeInformation(startNumber: Int, lastNumber: Int) {
+        
+        userNumberTextField.placeholder = "Digite um número de \(startNumber) à \(lastNumber)"
+        outsideRangeAlertLabel.text = "Apenas números entre \(startNumber) e \(lastNumber)"
     }
 }
 

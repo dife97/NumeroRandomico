@@ -4,6 +4,8 @@ class RandomNumberPresenter {
     
     weak var attemptInformationDelegate: AttemptInformationDelegate?
     
+    weak var rangeInformationDelegate: RangeInformationDelegate?
+    
     let interactor: RandomNumberInteractorProtocol
     
     init(interactor: RandomNumberInteractorProtocol) {
@@ -16,6 +18,8 @@ extension RandomNumberPresenter: RandomNumberPresenterInput {
     func viewDidLoad() {
         
         getAttemptInformation()
+        
+        getRangeInformation()
     }
     
     func didTapRandomNumberButton(userNumber: Int) {
@@ -40,12 +44,6 @@ extension RandomNumberPresenter: RandomNumberPresenterInput {
         } else {
             delegate?.didReceiveAcceptableValue()
         }
-        
-//        if textField.text?.isEmpty == true {
-//
-//        } else {
-//            configureCompareButton(enabled: true, backgroundColor: .blue)
-//        }
     }
 }
 
@@ -56,6 +54,14 @@ extension RandomNumberPresenter: RandomNumberPresenterProtocol {
         let attemptInformation = interactor.getAttemptInformation()
         
         attemptInformationDelegate?.configure(with: attemptInformation)
+    }
+    
+    func getRangeInformation() {
+        
+        let range = interactor.getRangeInformation()
+        
+        rangeInformationDelegate?.configureRangeInformation(startNumber: range.startNumber,
+                                                            lastNumber: range.lastNumber)
     }
     
     func getGameResult(for userNumber: Int) {
