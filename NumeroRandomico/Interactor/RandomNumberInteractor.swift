@@ -2,6 +2,8 @@ protocol RandomNumberInteractorProtocol {
     
     var randomNumberGame: RandomNumberProtocol { get }
     
+    func getAttemptInformation() -> AttemptModel
+    
     func getGameResult(for userNumber: Int, onComplete: @escaping (ResultModel) -> Void)
 }
 
@@ -11,6 +13,12 @@ class RandomNumberInteractor: RandomNumberInteractorProtocol {
     
     init(randomNumberGame: RandomNumberProtocol) {
         self.randomNumberGame = randomNumberGame
+    }
+    
+    func getAttemptInformation() -> AttemptModel {
+        
+        return AttemptModel(maxNumberOfTries: randomNumberGame.attemptModel.maxNumberOfTries,
+                            currentTryNumber: randomNumberGame.attemptModel.currentTryNumber)
     }
     
     func getGameResult(for userNumber: Int, onComplete: @escaping (ResultModel) -> Void) {

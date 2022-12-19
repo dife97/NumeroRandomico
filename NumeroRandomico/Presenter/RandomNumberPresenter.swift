@@ -2,6 +2,8 @@ protocol RandomNumberPresenterProtocol {
     
     var interactor: RandomNumberInteractorProtocol { get }
     
+    func viewDidLoad()
+    
     func getGameResult(for userNumber: Int)
 }
 
@@ -16,14 +18,26 @@ protocol RandomNumberPresenterDelegate: AnyObject {
     func smallerNumber(result: GameResult, randomNumber: Int)
 }
 
+protocol AttemptInformationDelegate: AnyObject {
+    
+    func configure(with attemptModel: AttemptModel)
+}
+
 class RandomNumberPresenter: RandomNumberPresenterProtocol {
     
     weak var delegate: RandomNumberPresenterDelegate?
+    
+    weak var attemptInformationDelegate: AttemptInformationDelegate?
     
     let interactor: RandomNumberInteractorProtocol
     
     init(interactor: RandomNumberInteractorProtocol) {
         self.interactor = interactor
+    }
+    
+    func viewDidLoad() {
+        
+        getAttemptInformation()
     }
     
     func getGameResult(for userNumber: Int) {
@@ -45,5 +59,12 @@ class RandomNumberPresenter: RandomNumberPresenterProtocol {
                 self.delegate?.gameOver()
             }
         }
+    }
+    
+    private func getAttemptInformation() {
+        
+        let attemptInformation = interactor.getAttemptInformation()
+        
+        attemptInformationDelegate?.configure(with: attemptInformation)
     }
 }

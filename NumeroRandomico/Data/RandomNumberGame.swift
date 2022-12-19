@@ -1,12 +1,10 @@
 class RandomNumberGame: RandomNumberProtocol {
     
-    var maxNumberOfTries: Int = 3
-    
-    var currentTryNumber: Int = 0
+    var attemptModel: AttemptModel = AttemptModel(maxNumberOfTries: 3, currentTryNumber: 1)
 
     func getResult(for userNumber: Int) -> ResultModel {
         
-        if currentTryNumber >= maxNumberOfTries {
+        if attemptModel.currentTryNumber >= attemptModel.maxNumberOfTries {
             reset()
             
             return ResultModel(userNumber: userNumber, randomNumber: 0, result: .gameOver)
@@ -14,7 +12,7 @@ class RandomNumberGame: RandomNumberProtocol {
         
         let randomNumber = generateRandomNumber()
         
-        currentTryNumber += 1
+        attemptModel.currentTryNumber += 1
         
         if userNumber == randomNumber {
             reset()
@@ -33,6 +31,6 @@ class RandomNumberGame: RandomNumberProtocol {
     
     func reset() {
         
-        currentTryNumber = 0
+        attemptModel.currentTryNumber = 0
     }
 }

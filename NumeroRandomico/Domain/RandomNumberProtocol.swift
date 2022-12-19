@@ -1,8 +1,6 @@
 protocol RandomNumberProtocol {
 
-    var maxNumberOfTries: Int { get }
-    
-    var currentTryNumber: Int { get }
+    var attemptModel: AttemptModel { get }
     
     func generateRandomNumber(from range: RangeModel) -> Int
     
@@ -17,4 +15,10 @@ extension RandomNumberProtocol {
         
         return Int.random(in: range.startNumber ... range.lastNumber)
     }
+}
+
+struct AttemptModel {
+
+    let maxNumberOfTries: Int
+    var currentTryNumber: Int
 }

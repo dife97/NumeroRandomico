@@ -8,7 +8,7 @@ enum ResultLabelText: String {
 }
 
 class RandomNumberViewController: UIViewController {
-
+    
     private var resultTextColor: UIColor = .black {
         didSet {
             resultLabel.textColor = resultTextColor
@@ -54,6 +54,18 @@ class RandomNumberViewController: UIViewController {
         return button
     }()
     
+    private lazy var numberOfTriesLabel: UILabel = {
+        let label = UILabel()
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 18, weight: .semibold)
+        label.numberOfLines = 0
+        label.textColor = .black
+        label.textAlignment = .center
+        
+        return label
+    }()
+    
     private lazy var randomNumberLabel: UILabel = {
         let label = UILabel()
         
@@ -75,7 +87,6 @@ class RandomNumberViewController: UIViewController {
         label.numberOfLines = 0
         label.textColor = resultTextColor
         label.textAlignment = .center
-//        label.text = resultText.rawValue
         label.isHidden = true
         
         return label
@@ -97,6 +108,8 @@ class RandomNumberViewController: UIViewController {
         super.viewDidLoad()
         
         configureView()
+        
+        presenter.viewDidLoad()
     }
     
     private func configureView() {
@@ -105,6 +118,7 @@ class RandomNumberViewController: UIViewController {
         
         view.addSubview(userNumberTextField)
         view.addSubview(compareButton)
+        view.addSubview(numberOfTriesLabel)
         view.addSubview(randomNumberLabel)
         view.addSubview(resultLabel)
         
@@ -119,7 +133,11 @@ class RandomNumberViewController: UIViewController {
             compareButton.trailingAnchor.constraint(equalTo: userNumberTextField.trailingAnchor),
             compareButton.heightAnchor.constraint(equalTo: userNumberTextField.heightAnchor),
             
-            randomNumberLabel.topAnchor.constraint(equalTo: compareButton.bottomAnchor, constant: 48),
+            numberOfTriesLabel.topAnchor.constraint(equalTo: compareButton.bottomAnchor, constant: 48),
+            numberOfTriesLabel.leadingAnchor.constraint(equalTo: userNumberTextField.leadingAnchor),
+            numberOfTriesLabel.trailingAnchor.constraint(equalTo: userNumberTextField.trailingAnchor),
+            
+            randomNumberLabel.topAnchor.constraint(equalTo: numberOfTriesLabel.bottomAnchor, constant: 24),
             randomNumberLabel.leadingAnchor.constraint(equalTo: userNumberTextField.leadingAnchor),
             randomNumberLabel.trailingAnchor.constraint(equalTo: userNumberTextField.trailingAnchor),
             
@@ -135,6 +153,14 @@ class RandomNumberViewController: UIViewController {
               let userNumber = Int(userNumberText) else { return }
         
         presenter.getGameResult(for: userNumber)
+    }
+}
+
+extension RandomNumberViewController: AttemptInformationDelegate {
+    
+    func configure(with attemptModel: AttemptModel) {
+        
+        numberOfTriesLabel.text = "Tentativa \(attemptModel.currentTryNumber) de \(attemptModel.maxNumberOfTries)"
     }
 }
 
