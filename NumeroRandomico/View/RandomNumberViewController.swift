@@ -31,6 +31,7 @@ class RandomNumberViewController: UIViewController {
         let textField = UITextField()
         
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.delegate = self
         textField.layer.borderColor = UIColor.darkGray.cgColor
         textField.layer.borderWidth = 1
         textField.layer.cornerRadius = 8
@@ -45,11 +46,15 @@ class RandomNumberViewController: UIViewController {
         let button = UIButton(type: .system)
         
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .blue
+//        button.backgroundColor = .blue
         button.layer.cornerRadius = 8
         button.setTitleColor(.white, for: .normal)
         button.setTitle("Gerar Número Aleatório", for: .normal)
         button.addTarget(self, action: #selector(didTapCompareButton), for: .touchUpInside)
+        
+        button.isEnabled = false
+        button.backgroundColor = .lightGray
+        button.setTitleColor(.darkGray, for: .disabled)
         
         return button
     }()
@@ -159,6 +164,12 @@ class RandomNumberViewController: UIViewController {
         
         numberOfTriesLabel.text = "Tentativa \(attemptModel.currentTryNumber) de \(attemptModel.maxNumberOfTries)"
     }
+    
+    private func configureCompareButton(enabled: Bool, backgroundColor: UIColor) {
+        
+        compareButton.isEnabled = enabled
+        compareButton.backgroundColor = backgroundColor
+    }
 }
 
 extension RandomNumberViewController: AttemptInformationDelegate {
@@ -189,5 +200,17 @@ extension RandomNumberViewController: RandomNumberPresenterDelegate {
     
     func smallerNumber(result: ResultModel) {
 
+    }
+}
+
+extension RandomNumberViewController: UITextFieldDelegate {
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        
+        if textField.text?.isEmpty == true {
+            configureCompareButton(enabled: false, backgroundColor: .lightGray)
+        } else {
+            configureCompareButton(enabled: true, backgroundColor: .blue)
+        }
     }
 }
