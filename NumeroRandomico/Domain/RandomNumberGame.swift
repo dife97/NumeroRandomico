@@ -4,13 +4,7 @@ class RandomNumberGame: RandomNumberProtocol {
 
     var range: RangeModel = RangeModel(startNumber: 0, lastNumber: 10)
     
-    private lazy var _randomNumber = generateRandomNumber(from: range)
-    
-    var randomNumber: Int {
-        get {
-            return _randomNumber
-        }
-    }
+    lazy var randomNumber: Int = generateRandomNumber(from: range)
     
     func getResult(for userNumber: Int) -> ResultModel {
         
@@ -51,6 +45,6 @@ class RandomNumberGame: RandomNumberProtocol {
     func reset() {
         
         attemptModel.currentTryNumber = 1
-        _randomNumber = generateRandomNumber(from: range)
+        randomNumber = generateRandomNumber(from: range)
     }
 }
