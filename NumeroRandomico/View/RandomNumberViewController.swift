@@ -1,31 +1,6 @@
 import UIKit
 
-enum ResultLabelText: String {
-    
-    case rightAnswer = "Você acertou 😁"
-    case wrongAnswer = "Você errou 😭\nTente novamente"
-    case lastWrongAnswer = "Game over 😭"
-}
-
 class RandomNumberViewController: UIViewController {
-    
-    private var resultTextColor: UIColor = .black {
-        didSet {
-            resultLabel.textColor = resultTextColor
-        }
-    }
-    
-    private var randomNumberText: String = "" {
-        didSet {
-            randomNumberLabel.text = randomNumberText
-        }
-    }
-    
-    private var resultText: ResultLabelText = .rightAnswer {
-        didSet {
-            resultLabel.text = resultText.rawValue
-        }
-    }
     
     private lazy var userNumberTextField: UITextField = {
         let textField = UITextField()
@@ -65,6 +40,7 @@ class RandomNumberViewController: UIViewController {
         label.numberOfLines = 0
         label.textColor = .red
         label.textAlignment = .center
+        label.isHidden = true
         
         return label
     }()
@@ -77,32 +53,6 @@ class RandomNumberViewController: UIViewController {
         label.numberOfLines = 0
         label.textColor = .black
         label.textAlignment = .center
-        
-        return label
-    }()
-    
-    private lazy var randomNumberLabel: UILabel = {
-        let label = UILabel()
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 18, weight: .semibold)
-        label.numberOfLines = 0
-        label.textColor = .black
-        label.textAlignment = .center
-        label.isHidden = true
-        
-        return label
-    }()
-    
-    private lazy var resultLabel: UILabel = {
-        let label = UILabel()
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 18, weight: .semibold)
-        label.numberOfLines = 0
-        label.textColor = resultTextColor
-        label.textAlignment = .center
-        label.isHidden = true
         
         return label
     }()
@@ -125,8 +75,6 @@ class RandomNumberViewController: UIViewController {
         configureView()
         
         presenter.viewDidLoad()
-        
-        
     }
     
     private func configureView() {
@@ -135,9 +83,8 @@ class RandomNumberViewController: UIViewController {
         
         view.addSubview(userNumberTextField)
         view.addSubview(compareButton)
+        view.addSubview(outsideRangeAlertLabel)
         view.addSubview(numberOfTriesLabel)
-        view.addSubview(randomNumberLabel)
-        view.addSubview(resultLabel)
         
         NSLayoutConstraint.activate([
             userNumberTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
@@ -150,34 +97,14 @@ class RandomNumberViewController: UIViewController {
             compareButton.trailingAnchor.constraint(equalTo: userNumberTextField.trailingAnchor),
             compareButton.heightAnchor.constraint(equalTo: userNumberTextField.heightAnchor),
             
-            numberOfTriesLabel.topAnchor.constraint(equalTo: compareButton.bottomAnchor, constant: 48),
-            numberOfTriesLabel.leadingAnchor.constraint(equalTo: userNumberTextField.leadingAnchor),
-            numberOfTriesLabel.trailingAnchor.constraint(equalTo: userNumberTextField.trailingAnchor),
-            
-            randomNumberLabel.topAnchor.constraint(equalTo: numberOfTriesLabel.bottomAnchor, constant: 24),
-            randomNumberLabel.leadingAnchor.constraint(equalTo: userNumberTextField.leadingAnchor),
-            randomNumberLabel.trailingAnchor.constraint(equalTo: userNumberTextField.trailingAnchor),
-            
-            resultLabel.topAnchor.constraint(equalTo: randomNumberLabel.bottomAnchor, constant: 24),
-            resultLabel.leadingAnchor.constraint(equalTo: userNumberTextField.leadingAnchor),
-            resultLabel.trailingAnchor.constraint(equalTo: userNumberTextField.trailingAnchor)
-        ])
-    }
-    
-    private func addOutsideRangeAlertLabel() {
-        
-        view.addSubview(outsideRangeAlertLabel)
-        
-        NSLayoutConstraint.activate([
             outsideRangeAlertLabel.topAnchor.constraint(equalTo: compareButton.bottomAnchor, constant: 8),
             outsideRangeAlertLabel.leadingAnchor.constraint(equalTo: userNumberTextField.leadingAnchor),
             outsideRangeAlertLabel.trailingAnchor.constraint(equalTo: userNumberTextField.trailingAnchor),
+            
+            numberOfTriesLabel.topAnchor.constraint(equalTo: outsideRangeAlertLabel.bottomAnchor, constant: 40),
+            numberOfTriesLabel.leadingAnchor.constraint(equalTo: userNumberTextField.leadingAnchor),
+            numberOfTriesLabel.trailingAnchor.constraint(equalTo: userNumberTextField.trailingAnchor)
         ])
-    }
-    
-    private func removeOutsideRangeAlertLabel() {
-        
-        outsideRangeAlertLabel.removeFromSuperview()
     }
     
     @objc private func didTapCompareButton() {
@@ -228,30 +155,86 @@ extension RandomNumberViewController: RandomNumberPresenterDelegate {
         
         configureCompareButton(enabled: false, backgroundColor: .lightGray)
         
-        addOutsideRangeAlertLabel()
+        outsideRangeAlertLabel.isHidden = false
     }
     
     func didReceiveAcceptableValue() {
         
         configureCompareButton(enabled: true, backgroundColor: .blue)
         
-        removeOutsideRangeAlertLabel()
+        outsideRangeAlertLabel.isHidden = true
     }
     
-    func gameOver() {
+    func gameOver(message: GameResultTexts) {
         
-    }
-    
-    func rightAnswer(result: ResultModel) {
+        let alert = AlertConfiguration(
+            title: "Resultado",
+            message: message.rawValue,
+            actionTittle: "Ok",
+            actionStyle: .default) { action in
+                
+                self.userNumberTextField.text = ""
+                
+                self.configureCompareButton(enabled: false, backgroundColor: .lightGray)
+                
+                self.dismiss(animated: true)
+            }
         
+        showAlert(with: alert)
     }
     
-    func greaterNumber(result: ResultModel) {
+    func rightAnswer(message: GameResultTexts) {
         
+        let alert = AlertConfiguration(
+            title: "Resultado",
+            message: message.rawValue,
+            actionTittle: "Ok",
+            actionStyle: .default) { [unowned self]  action in
+                
+                self.userNumberTextField.text = ""
+                
+                self.configureCompareButton(enabled: false, backgroundColor: .lightGray)
+                
+                self.dismiss(animated: true)
+            }
+        
+        showAlert(with: alert)
     }
     
-    func smallerNumber(result: ResultModel) {
-
+    func greaterNumber(message: GameResultTexts) {
+        
+        let alert = AlertConfiguration(
+            title: "Resultado",
+            message: message.rawValue,
+            actionTittle: "Ok",
+            actionStyle: .default) { [unowned self] action in
+                
+                self.userNumberTextField.text = ""
+                
+                self.configureCompareButton(enabled: false, backgroundColor: .lightGray)
+                
+                self.dismiss(animated: true)
+            }
+        
+        showAlert(with: alert)
+    }
+    
+    func smallerNumber(message: GameResultTexts) {
+        
+        let alert = AlertConfiguration(
+            title: "Resultado",
+            message: message.rawValue,
+            actionTittle: "Ok",
+            actionStyle: .default) { [unowned self] action in
+                
+                self.userNumberTextField.text = ""
+                
+                self.configureCompareButton(enabled: false, backgroundColor: .lightGray)
+                
+                self.dismiss(animated: true)
+            }
+        
+        showAlert(with: alert)
     }
 }
 

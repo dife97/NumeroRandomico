@@ -70,6 +70,22 @@ extension RandomNumberPresenter: RandomNumberPresenterProtocol {
             
             self.attemptInformationDelegate?.configure(with: result.attemptInformation)
             
+            switch result.result {
+                
+            case .rightAnswer:
+                self.delegate?.rightAnswer(message: .rightAnswer)
+                
+            case .greaterNumber:
+                self.delegate?.greaterNumber(message: .greaterNumber)
+                
+            case .smallerNumber:
+                self.delegate?.smallerNumber(message: .smallerNumber)
+                
+            case .gameOver:
+                self.delegate?.gameOver(message: .gameOver)
+            }
         }
     }
 }
+
+

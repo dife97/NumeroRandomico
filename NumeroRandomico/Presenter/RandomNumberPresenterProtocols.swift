@@ -36,11 +36,11 @@ protocol RandomNumberPresenterDelegate: AnyObject {
     
     func didReceiveAcceptableValue()
     
-    func gameOver()
+    func gameOver(message: GameResultTexts)
     
-    func rightAnswer(result: ResultModel)
+    func rightAnswer(message: GameResultTexts)
     
-    func greaterNumber(result: ResultModel)
+    func greaterNumber(message: GameResultTexts)
     
-    func smallerNumber(result: ResultModel)
+    func smallerNumber(message: GameResultTexts)
 }

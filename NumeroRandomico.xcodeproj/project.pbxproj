@@ -15,6 +15,8 @@
 		4B1DC8062950D673005E6ACF /* RandomNumberPresenterProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1DC8052950D673005E6ACF /* RandomNumberPresenterProtocols.swift */; };
 		4B1DC8082950EC17005E6ACF /* RandomNumberInteractorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1DC8072950EC17005E6ACF /* RandomNumberInteractorProtocols.swift */; };
 		4B1DC80A2950ED3C005E6ACF /* AttemptModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1DC8092950ED3C005E6ACF /* AttemptModel.swift */; };
+		4B417D1F2951F65800F1AEF4 /* Alert+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B417D1E2951F65800F1AEF4 /* Alert+Extension.swift */; };
+		4B417D212951FE9100F1AEF4 /* GameResultTexts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B417D202951FE9100F1AEF4 /* GameResultTexts.swift */; };
 		4BB45CEC29418819008B8CE3 /* RandomNumberProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB45CEB29418819008B8CE3 /* RandomNumberProtocol.swift */; };
 		4BB45CF429418E73008B8CE3 /* RandomNumberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB45CF329418E73008B8CE3 /* RandomNumberTests.swift */; };
 		4BB45CFC29419026008B8CE3 /* RandomNumberGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB45CFB29419026008B8CE3 /* RandomNumberGame.swift */; };
@@ -45,6 +47,8 @@
 		4B1DC8052950D673005E6ACF /* RandomNumberPresenterProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomNumberPresenterProtocols.swift; sourceTree = "<group>"; };
 		4B1DC8072950EC17005E6ACF /* RandomNumberInteractorProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomNumberInteractorProtocols.swift; sourceTree = "<group>"; };
 		4B1DC8092950ED3C005E6ACF /* AttemptModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttemptModel.swift; sourceTree = "<group>"; };
+		4B417D1E2951F65800F1AEF4 /* Alert+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+Extension.swift"; sourceTree = "<group>"; };
+		4B417D202951FE9100F1AEF4 /* GameResultTexts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultTexts.swift; sourceTree = "<group>"; };
 		4BB45CEB29418819008B8CE3 /* RandomNumberProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomNumberProtocol.swift; sourceTree = "<group>"; };
 		4BB45CF129418E72008B8CE3 /* NumeroRandomicoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NumeroRandomicoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BB45CF329418E73008B8CE3 /* RandomNumberTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomNumberTests.swift; sourceTree = "<group>"; };
@@ -99,6 +103,7 @@
 				4BB45D3D29422B3C008B8CE3 /* Interactor */,
 				4BB45D3A29422ABC008B8CE3 /* Presenter */,
 				4BB45D3B29422ACA008B8CE3 /* View */,
+				4B417D1D2951F62300F1AEF4 /* Extensions */,
 				4BB45D3C29422AD8008B8CE3 /* Files */,
 			);
 			path = NumeroRandomico;
@@ -114,6 +119,14 @@
 				4B1DC8092950ED3C005E6ACF /* AttemptModel.swift */,
 			);
 			path = Domain;
+			sourceTree = "<group>";
+		};
+		4B417D1D2951F62300F1AEF4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4B417D1E2951F65800F1AEF4 /* Alert+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		4BB45CF229418E73008B8CE3 /* NumeroRandomicoTests */ = {
@@ -138,6 +151,7 @@
 			children = (
 				4BB45D3E29422B51008B8CE3 /* RandomNumberPresenter.swift */,
 				4B1DC8052950D673005E6ACF /* RandomNumberPresenterProtocols.swift */,
+				4B417D202951FE9100F1AEF4 /* GameResultTexts.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -270,9 +284,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BB45D3F29422B51008B8CE3 /* RandomNumberPresenter.swift in Sources */,
+				4B417D1F2951F65800F1AEF4 /* Alert+Extension.swift in Sources */,
 				4B087A4F2941712000246D3A /* RandomNumberViewController.swift in Sources */,
 				4B1DC8062950D673005E6ACF /* RandomNumberPresenterProtocols.swift in Sources */,
 				4B087A4B2941712000246D3A /* AppDelegate.swift in Sources */,
+				4B417D212951FE9100F1AEF4 /* GameResultTexts.swift in Sources */,
 				4BB45D4229422BC3008B8CE3 /* RandomNumberInteractor.swift in Sources */,
 				4B1DC80A2950ED3C005E6ACF /* AttemptModel.swift in Sources */,
 				4BB45D462942545F008B8CE3 /* RangeModel.swift in Sources */,
