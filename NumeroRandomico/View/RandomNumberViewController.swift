@@ -42,8 +42,6 @@ class RandomNumberViewController: UIViewController {
                 
                 self.randomNumberView.clearUserNumberTextField()
                 
-                self.randomNumberView.updateCompareButton(enabled: false, backgroundColor: .lightGray)
-                
                 self.dismiss(animated: true)
             }
         
@@ -59,6 +57,8 @@ extension RandomNumberViewController: RandomNumberViewDelegate {
     }
     
     func compareButtonAction(userNumber: Int) {
+        
+        randomNumberView.updateCompareButton(enabled: false, backgroundColor: .lightGray)
         
         presenter.didTapRandomNumberButton(userNumber: userNumber)
     }
