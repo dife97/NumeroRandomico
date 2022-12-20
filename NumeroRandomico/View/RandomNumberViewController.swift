@@ -125,6 +125,24 @@ class RandomNumberViewController: UIViewController {
         compareButton.isEnabled = enabled
         compareButton.backgroundColor = backgroundColor
     }
+    
+    private func showResult(with message: String) {
+        
+        let alert = AlertConfiguration(
+            title: "Resultado",
+            message: message,
+            actionTittle: "Ok",
+            actionStyle: .default) { action in
+                
+                self.userNumberTextField.text = ""
+                
+                self.configureCompareButton(enabled: false, backgroundColor: .lightGray)
+                
+                self.dismiss(animated: true)
+            }
+        
+        showAlert(with: alert)
+    }
 }
 
 extension RandomNumberViewController: AttemptInformationDelegate {
@@ -140,7 +158,7 @@ extension RandomNumberViewController: RangeInformationDelegate {
     func configureRangeInformation(startNumber: Int, lastNumber: Int) {
         
         userNumberTextField.placeholder = "Digite um número de \(startNumber) à \(lastNumber)"
-        outsideRangeAlertLabel.text = "Apenas números entre \(startNumber) e \(lastNumber)"
+        outsideRangeAlertLabel.text = "Apenas números de \(startNumber) à \(lastNumber)"
     }
 }
 
@@ -167,74 +185,22 @@ extension RandomNumberViewController: RandomNumberPresenterDelegate {
     
     func gameOver(message: GameResultTexts) {
         
-        let alert = AlertConfiguration(
-            title: "Resultado",
-            message: message.rawValue,
-            actionTittle: "Ok",
-            actionStyle: .default) { action in
-                
-                self.userNumberTextField.text = ""
-                
-                self.configureCompareButton(enabled: false, backgroundColor: .lightGray)
-                
-                self.dismiss(animated: true)
-            }
-        
-        showAlert(with: alert)
+        showResult(with: message.rawValue)
     }
     
     func rightAnswer(message: GameResultTexts) {
         
-        let alert = AlertConfiguration(
-            title: "Resultado",
-            message: message.rawValue,
-            actionTittle: "Ok",
-            actionStyle: .default) { [unowned self]  action in
-                
-                self.userNumberTextField.text = ""
-                
-                self.configureCompareButton(enabled: false, backgroundColor: .lightGray)
-                
-                self.dismiss(animated: true)
-            }
-        
-        showAlert(with: alert)
+        showResult(with: message.rawValue)
     }
     
     func greaterNumber(message: GameResultTexts) {
         
-        let alert = AlertConfiguration(
-            title: "Resultado",
-            message: message.rawValue,
-            actionTittle: "Ok",
-            actionStyle: .default) { [unowned self] action in
-                
-                self.userNumberTextField.text = ""
-                
-                self.configureCompareButton(enabled: false, backgroundColor: .lightGray)
-                
-                self.dismiss(animated: true)
-            }
-        
-        showAlert(with: alert)
+        showResult(with: message.rawValue)
     }
     
     func smallerNumber(message: GameResultTexts) {
         
-        let alert = AlertConfiguration(
-            title: "Resultado",
-            message: message.rawValue,
-            actionTittle: "Ok",
-            actionStyle: .default) { [unowned self] action in
-                
-                self.userNumberTextField.text = ""
-                
-                self.configureCompareButton(enabled: false, backgroundColor: .lightGray)
-                
-                self.dismiss(animated: true)
-            }
-        
-        showAlert(with: alert)
+        showResult(with: message.rawValue)
     }
 }
 
