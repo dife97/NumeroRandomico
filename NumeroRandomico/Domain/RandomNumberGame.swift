@@ -4,15 +4,15 @@ class RandomNumberGame: RandomNumberProtocol {
 
     var range: RangeModel = RangeModel(startNumber: 0, lastNumber: 10)
     
-    func getResult(for userNumber: Int) -> ResultModel {
-        
-        if attemptModel.currentTryNumber >= attemptModel.maxNumberOfTries {
-            reset()
-            
-            return ResultModel(userNumber: userNumber, randomNumber: 0, attemptInformation: attemptModel, result: .gameOver)
+    private lazy var _randomNumber = generateRandomNumber(from: range)
+    
+    var randomNumber: Int {
+        get {
+            return _randomNumber
         }
-        
-        let randomNumber = generateRandomNumber(from: range)
+    }
+    
+    func getResult(for userNumber: Int) -> ResultModel {
         
         attemptModel.currentTryNumber += 1
         
@@ -25,23 +25,32 @@ class RandomNumberGame: RandomNumberProtocol {
                                result: .rightAnswer)
         }
         
-        if userNumber > randomNumber {
+        if userNumber > randomNumber && attemptModel.currentTryNumber <= attemptModel.maxNumberOfTries {
+                        
             return ResultModel(userNumber: userNumber,
                                randomNumber: randomNumber,
                                attemptInformation: attemptModel,
                                result: .greaterNumber)
         }
         
-        else {
+        if userNumber < randomNumber && attemptModel.currentTryNumber <= attemptModel.maxNumberOfTries {
+            
             return ResultModel(userNumber: userNumber,
                                randomNumber: randomNumber,
                                attemptInformation: attemptModel,
                                result: .smallerNumber)
+        }
+        
+        else {
+            reset()
+            
+            return ResultModel(userNumber: userNumber, randomNumber: 0, attemptInformation: attemptModel, result: .gameOver)
         }
     }
     
     func reset() {
         
         attemptModel.currentTryNumber = 1
+        _randomNumber = generateRandomNumber(from: range)
     }
 }

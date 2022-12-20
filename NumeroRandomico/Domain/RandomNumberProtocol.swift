@@ -4,6 +4,8 @@ protocol RandomNumberProtocol {
     
     var range: RangeModel { get set }
     
+    var randomNumber: Int { get }
+    
     func generateRandomNumber(from range: RangeModel) -> Int
     
     func getResult(for userNumber: Int) -> ResultModel

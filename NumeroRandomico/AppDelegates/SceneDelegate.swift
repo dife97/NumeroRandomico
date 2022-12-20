@@ -17,9 +17,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func randomNumberViewControllerFactory() -> RandomNumberViewController {
         
-        let randomNumberDomain = RandomNumberGame()
+        let randomNumberGame = RandomNumberGame()
         
-        let interactor = RandomNumberInteractor(randomNumberGame: randomNumberDomain)
+        let interactor = RandomNumberInteractor(randomNumberGame: randomNumberGame)
         
         let presenter = RandomNumberPresenter(interactor: interactor)
         
