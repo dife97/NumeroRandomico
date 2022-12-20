@@ -31,7 +31,7 @@ extension RandomNumberPresenter: RandomNumberPresenterInput {
         
         guard let value = value else {
             
-            delegate?.didReceiveEmptyValue()
+            delegate?.didTypeEmptyValue()
             
             return
         }
@@ -40,9 +40,9 @@ extension RandomNumberPresenter: RandomNumberPresenterInput {
         
         if interactor.isUserNumberOutsideRange(userNumber: userNumber) {
             
-            delegate?.didReceiveGreaterValue()
+            delegate?.didTypeGreaterValue()
         } else {
-            delegate?.didReceiveAcceptableValue()
+            delegate?.didTypeAcceptableValue()
         }
     }
 }

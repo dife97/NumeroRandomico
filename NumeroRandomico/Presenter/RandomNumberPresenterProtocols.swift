@@ -30,11 +30,11 @@ protocol RangeInformationDelegate: AnyObject {
 
 protocol RandomNumberPresenterDelegate: AnyObject {
     
-    func didReceiveEmptyValue()
+    func didTypeEmptyValue()
     
-    func didReceiveGreaterValue()
+    func didTypeGreaterValue()
     
-    func didReceiveAcceptableValue()
+    func didTypeAcceptableValue()
     
     func gameOver(message: GameResultTexts)
     
