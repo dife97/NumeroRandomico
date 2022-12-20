@@ -9,8 +9,6 @@ protocol RandomNumberViewDelegate: AnyObject {
 
 class RandomNumberView: UIView {
     
-    weak var delegate: RandomNumberViewDelegate?
-    
     var userNumberTextFieldPlaceholder: String = "" {
         didSet {
             userNumberTextField.placeholder = userNumberTextFieldPlaceholder
@@ -84,6 +82,8 @@ class RandomNumberView: UIView {
         return label
     }()
     
+    weak var delegate: RandomNumberViewDelegate?
+    
     init(delegate: RandomNumberViewDelegate) {
         self.delegate = delegate
         
@@ -95,6 +95,9 @@ class RandomNumberView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+extension RandomNumberView {
     
     private func configureView() {
         
@@ -106,9 +109,6 @@ class RandomNumberView: UIView {
         
         additionalConfiguration()
     }
-}
-
-extension RandomNumberView {
     
     private func configureUserNumberTextField() {
         
